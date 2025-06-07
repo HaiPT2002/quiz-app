@@ -1,7 +1,9 @@
-/* Base Styles */
+/* Import Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap');
 
+/* CSS Variables */
 :root {
+    /* Colors */
     --primary-color: #d81b60;
     --primary-light: #f48fb1;
     --primary-dark: #c2185b;
@@ -9,7 +11,34 @@
     --text-dark: #424242;
     --text-light: #666;
     --white: #fff;
+    --transparent-white: rgba(255, 255, 255, 0.9);
+    --shadow-color: rgba(216, 27, 96, 0.2);
+    
+    /* Gradients */
+    --gradient-base: linear-gradient(135deg, #fef9e7 0%, #f8bbd0 50%, #bbdefb 100%);
+    
+    /* Transitions */
     --animation-timing: 0.3s ease;
+    
+    /* Spacing */
+    --spacing-xs: 5px;
+    --spacing-sm: 10px;
+    --spacing-md: 20px;
+    --spacing-lg: 30px;
+    --spacing-xl: 40px;
+    --spacing-xxl: 50px;
+    
+    /* Border Radius */
+    --radius-sm: 10px;
+    --radius-md: 15px;
+    --radius-lg: 25px;
+    
+    /* Typography */
+    --font-size-sm: 0.9rem;
+    --font-size-base: 1rem;
+    --font-size-md: 1.1rem;
+    --font-size-lg: 1.2rem;
+    --line-height-base: 1.6;
 }
 
 /* Reset and Base Styles */
@@ -22,19 +51,19 @@
 body {
     margin: 0;
     min-height: 100vh;
-    background: linear-gradient(135deg, #fef9e7 0%, #f8bbd0 50%, #bbdefb 100%);
+    background: var(--gradient-base);
     font-family: 'Playfair Display', serif;
     display: flex;
     justify-content: center;
-    transition: background 0.5s ease;
+    transition: background var(--animation-timing);
 }
 
 /* Container */
 .quiz-container {
     width: 90%;
     max-width: 800px;
-    margin: 20px auto;
-    padding: 20px;
+    margin: var(--spacing-md) auto;
+    padding: var(--spacing-md);
     position: relative;
     background: transparent;
 }
@@ -44,23 +73,42 @@ h1, h2 {
     color: var(--primary-color);
     text-align: center;
     font-weight: 700;
-    margin-bottom: 20px;
+    margin-bottom: var(--spacing-md);
     font-size: clamp(1.5rem, 4vw, 2.5rem);
+}
+
+/* Welcome Screen */
+#welcome-screen {
+    text-align: center;
+    padding: var(--spacing-md);
+    animation: fadeIn var(--animation-timing);
+}
+
+.welcome-text {
+    font-size: clamp(var(--font-size-base), 3vw, var(--font-size-lg));
+    color: var(--primary-color);
+    margin: var(--spacing-md) 0;
+    line-height: var(--line-height-base);
+}
+
+.welcome-description {
+    margin-bottom: var(--spacing-xxl);
+    line-height: var(--line-height-base);
 }
 
 /* Buttons */
 .btn {
     display: block;
     width: 100%;
-    margin: 10px 0;
-    padding: 15px;
-    background-color: rgba(255, 255, 255, 0.9);
+    margin: var(--spacing-sm) 0;
+    padding: var(--spacing-md);
+    background-color: var(--transparent-white);
     border: 2px solid var(--accent-pink);
-    border-radius: 10px;
+    border-radius: var(--radius-sm);
     cursor: pointer;
-    transition: var(--animation-timing);
+    transition: all var(--animation-timing);
     font-family: inherit;
-    font-size: 1rem;
+    font-size: var(--font-size-base);
     color: var(--text-dark);
     min-height: 44px;
     touch-action: manipulation;
@@ -68,8 +116,9 @@ h1, h2 {
 
 .btn:hover:not(:disabled),
 .btn:focus:not(:disabled) {
-    background-color: #fce4ec;
+    background-color: var(--accent-pink);
     transform: translateY(-2px);
+    box-shadow: 0 4px 8px var(--shadow-color);
 }
 
 .btn.selected {
@@ -82,74 +131,101 @@ h1, h2 {
 .navigation-buttons {
     display: flex;
     justify-content: space-between;
-    gap: 10px;
-    margin-top: 20px;
+    gap: var(--spacing-sm);
+    margin-top: var(--spacing-lg);
 }
 
 #prev-button,
 #next-button,
 #start-quiz-btn,
 .restart-button {
-    padding: 12px 25px;
+    padding: var(--spacing-sm) var(--spacing-lg);
     background-color: var(--primary-color);
     color: var(--white);
     border: none;
-    border-radius: 25px;
+    border-radius: var(--radius-lg);
     cursor: pointer;
-    transition: var(--animation-timing);
+    transition: all var(--animation-timing);
     font-family: inherit;
-    font-size: 1rem;
-    box-shadow: 0 4px 15px rgba(216, 27, 96, 0.2);
+    font-size: var(--font-size-base);
+    box-shadow: 0 4px 15px var(--shadow-color);
     min-width: 120px;
 }
 
-/* Welcome Screen */
-#welcome-screen {
-    text-align: center;
-    padding: 20px;
-    animation: fadeIn 0.5s ease-in;
-}
-
-.welcome-text {
-    font-size: clamp(1.1rem, 3vw, 1.4rem);
-    color: var(--primary-color);
-    margin: 20px 0;
-    line-height: 1.6;
+#start-quiz-btn {
+    margin-top: var(--spacing-xl);
+    padding: var(--spacing-md) var(--spacing-xl);
 }
 
 /* Loading Screen */
 #loading-screen {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
     text-align: center;
-    padding: 20px;
+    padding: var(--spacing-md);
+}
+
+.loading-text {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    color: var(--primary-color);
+    margin-bottom: var(--spacing-xl);
+    font-weight: 700;
+    animation: fadeIn var(--animation-timing);
+}
+
+.loading-subtext {
+    font-size: clamp(1rem, 2vw, 1.5rem);
+    color: var(--text-light);
+    margin-top: var(--spacing-lg);
+    animation: pulse 2s ease-in-out infinite;
 }
 
 .heart-loader {
     width: 60px;
     height: 60px;
-    margin: 0 auto;
+    position: relative;
+    animation: pulse 2s ease-in-out infinite;
 }
 
 /* Results Screen */
 #results {
     text-align: center;
-    padding: 20px;
+    padding: var(--spacing-md);
 }
 
 #interpretation {
-    font-size: clamp(1rem, 2.5vw, 1.6rem);
-    line-height: 1.6;
+    font-size: clamp(var(--font-size-base), 2.5vw, var(--font-size-lg));
+    line-height: var(--line-height-base);
     color: var(--text-dark);
-    margin: 20px auto;
-    padding: 20px;
-    background: rgba(255, 255, 255, 0.95);
-    border-radius: 15px;
+    margin: var(--spacing-md) auto;
+    padding: var(--spacing-lg);
+    background: var(--transparent-white);
+    border-radius: var(--radius-md);
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    max-width: 90%;
 }
 
 /* Background Styles */
-.result-genx-bg { background: linear-gradient(rgba(254, 249, 231, 0.8), rgba(248, 187, 208, 0.8)); }
-.result-neutral-bg { background: linear-gradient(rgba(243, 229, 245, 0.8), rgba(232, 234, 246, 0.8)); }
-.result-genz-bg { background: linear-gradient(rgba(227, 242, 253, 0.8), rgba(224, 247, 250, 0.8)); }
+.result-genx-bg { 
+    background: url('../images/genx-bg.jpg') center/cover no-repeat;
+    background-attachment: fixed;
+    min-height: 100vh;
+}
+
+.result-neutral-bg { 
+    background: url('../images/neutral-bg.jpg') center/cover no-repeat;
+    background-attachment: fixed;
+    min-height: 100vh;
+}
+
+.result-genz-bg { 
+    background: url('../images/genz-bg.jpg') center/cover no-repeat;
+    background-attachment: fixed;
+    min-height: 100vh;
+}
 
 /* Animations */
 @keyframes fadeIn {
@@ -160,7 +236,7 @@ h1, h2 {
 @keyframes slideUp {
     from {
         opacity: 0;
-        transform: translateY(20px);
+        transform: translateY(var(--spacing-md));
     }
     to {
         opacity: 1;
@@ -168,36 +244,47 @@ h1, h2 {
     }
 }
 
+@keyframes pulse {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.1); opacity: 0.7; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
 /* Media Queries */
 @media screen and (min-width: 768px) {
     .quiz-container {
-        padding: 30px;
-        margin: 40px auto;
+        padding: var(--spacing-lg);
+        margin: var(--spacing-xl) auto;
     }
 
     .btn {
-        font-size: 1.1rem;
-        padding: 15px;
+        font-size: var(--font-size-md);
     }
 
     .navigation-buttons {
-        margin-top: 30px;
+        margin-top: var(--spacing-xl);
     }
 
     #prev-button,
     #next-button,
     #start-quiz-btn,
     .restart-button {
-        font-size: 1.2rem;
-        padding: 15px 40px;
+        font-size: var(--font-size-lg);
+        padding: var(--spacing-md) var(--spacing-xl);
     }
 
-    #start-quiz-btn {
-        margin-top: 30px; /* Add more space above the start button */
+    .loading-text {
+        font-size: 2.5rem;
+        margin-top: var(--spacing-xxl);
     }
 
     #interpretation {
-        padding: 30px;
+        padding: var(--spacing-xl);
         max-width: 85%;
     }
 }
