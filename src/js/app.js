@@ -103,6 +103,7 @@ function showResults() {
 
     setTimeout(() => {
         loadingScreen.style.display = "none";
+        document.querySelector('.quiz-container').classList.add('showing-results');
         resultsDiv.style.display = "block";
 
         // Remove any existing result classes

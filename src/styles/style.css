@@ -192,20 +192,42 @@ h1, h2 {
 
 /* Results Screen */
 #results {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
     text-align: center;
-    padding: var(--spacing-md);
+    padding: var(--spacing-xl) var(--spacing-md);
+    gap: var(--spacing-xl);
+}
+
+#results h2 {
+    margin-top: 0; /* Remove top margin from title */
+    margin-bottom: var(--spacing-lg); /* Add space below title */
 }
 
 #interpretation {
     font-size: clamp(var(--font-size-base), 2.5vw, var(--font-size-lg));
     line-height: var(--line-height-base);
     color: var(--text-dark);
-    margin: var(--spacing-md) auto;
-    padding: var(--spacing-lg);
+    padding: var(--spacing-xl);
     background: var(--transparent-white);
     border-radius: var(--radius-md);
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     max-width: 90%;
+    margin: 0 auto;
+    position: relative;
+    transform: translateY(-2vh);
+}
+
+.quiz-container.showing-results {
+    background: transparent;
+    box-shadow: none;
+}
+
+#results .restart-button {
+    margin-top: var(--spacing-xl); /* Add space above restart button */
 }
 
 /* Background Styles */
