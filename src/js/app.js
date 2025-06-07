@@ -152,18 +152,15 @@ document.getElementById('restart-btn').addEventListener('click', () => {
     currentQuestionIndex = 0;
     totalScore = 0;
     userAnswers = new Array(questions.length).fill(null);
-    participantName = '';
     
     // Reset background and ensure container transparency
     document.body.classList.remove('result-genx-bg', 'result-neutral-bg', 'result-genz-bg');
-    document.querySelector('.quiz-container').style.background = 'none';
-    document.querySelector('.quiz-container').style.backdropFilter = 'none';
-    document.querySelector('.quiz-container').style.boxShadow = 'none';
+    document.querySelector('.quiz-container').style.background = 'transparent';
     
     // Hide results and show welcome screen
     document.getElementById('results').style.display = 'none';
     document.getElementById('welcome-screen').style.display = 'block';
     
-    // Clear name input
-    document.getElementById('participant-name').value = '';
+    // Remove any result-specific classes from the results div
+    document.getElementById('results').classList.remove('result-genx', 'result-neutral', 'result-genz');
 });
