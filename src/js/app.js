@@ -16,7 +16,6 @@ const startQuizButton = document.getElementById("start-quiz-btn");
 const loadingScreen = document.getElementById("loading-screen");
 
 let userAnswers = new Array(questions.length).fill(null);
-let participantName = '';
 
 document.addEventListener('DOMContentLoaded', () => {
     // Hide quiz and results screens initially
@@ -29,17 +28,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 function startQuiz() {
-    const nameInput = document.getElementById('participant-name');
-    const nameError = document.getElementById('name-error');
-    
-    if (!nameInput.value.trim()) {
-        nameError.style.display = 'block';
-        nameInput.focus();
-        return;
-    }
-    
-    participantName = nameInput.value.trim();
-    nameError.style.display = 'none';
     welcomeScreen.style.display = "none";
     quizScreen.style.display = "block";
     currentQuestionIndex = 0;
@@ -126,15 +114,15 @@ function showResults() {
 
         let interpretation = "";
         if (totalScore >= 46) {
-            interpretation = `${participantName}, bạn có xu hướng yêu truyền thống (Gen X):\nBạn đề cao sự ổn định, kín đáo, thấu cảm và gắn bó bền lâu.`;
+            interpretation = "Bạn có xu hướng yêu truyền thống (Gen X):\nBạn đề cao sự ổn định, kín đáo, thấu cảm và gắn bó bền lâu.";
             resultsDiv.classList.add('result-genx');
             document.body.classList.add('result-genx-bg');
         } else if (totalScore >= 30) {
-            interpretation = `${participantName}, bạn có xu hướng yêu giao thoa (Trung lập):\nBạn biết cân bằng giữa sự riêng tư và cởi mở.`;
+            interpretation = "Bạn có xu hướng yêu giao thoa (Trung lập):\nBạn biết cân bằng giữa sự riêng tư và cởi mở.";
             resultsDiv.classList.add('result-neutral');
             document.body.classList.add('result-neutral-bg');
         } else {
-            interpretation = `${participantName}, bạn có xu hướng yêu hiện đại (Gen Z):\nBạn có xu hướng thoải mái, cởi mở và linh hoạt trong tình yêu.`;
+            interpretation = "Bạn có xu hướng yêu hiện đại (Gen Z):\nBạn có xu hướng thoải mái, cởi mở và linh hoạt trong tình yêu.";
             resultsDiv.classList.add('result-genz');
             document.body.classList.add('result-genz-bg');
         }
