@@ -103,32 +103,50 @@ function showResults() {
 
     setTimeout(() => {
         loadingScreen.style.display = "none";
-        document.querySelector('.quiz-container').classList.add('showing-results');
-        resultsDiv.style.display = "block";
+        const allNeutral = userAnswers.every(answer => answer === 3);
 
-        // Remove any existing result classes
-        resultsDiv.classList.remove('result-genx', 'result-neutral', 'result-genz');
-        document.body.classList.remove('result-genx-bg', 'result-neutral-bg', 'result-genz-bg');
-        
-        // Clear any existing background classes from quiz container
-        document.querySelector('.quiz-container').style.background = 'rgba(255, 255, 255, 0.85)';
-
-        let interpretation = "";
-        if (totalScore >= 46) {
-            interpretation = "Bạn có xu hướng yêu truyền thống (Gen X):\nBạn đề cao sự ổn định, kín đáo, thấu cảm và gắn bó bền lâu.";
-            resultsDiv.classList.add('result-genx');
-            document.body.classList.add('result-genx-bg');
-        } else if (totalScore >= 30) {
-            interpretation = "Bạn có xu hướng yêu giao thoa (Trung lập):\nBạn biết cân bằng giữa sự riêng tư và cởi mở.";
-            resultsDiv.classList.add('result-neutral');
-            document.body.classList.add('result-neutral-bg');
+        if (allNeutral) {
+            // Show easter egg page
+            document.querySelector('.quiz-container').classList.add('showing-results');
+            resultsDiv.style.display = "block";
+            
+            // Clear existing content
+            resultsDiv.innerHTML = `
+                <h2>🌟 Bạn đã tìm thấy con rùa Terapagos! 🌟</h2>
+                <div class="easter-egg">
+                    <img src="images/Terapagos.PNG" alt="Terapagos" class="terapagos-img">
+                    <p class="easter-egg-text">Chúc mừng! Bạn đã khám phá ra điều đặc biệt.</p>
+                    <button id="restart-btn" class="restart-button">Thử lại</button>
+                </div>
+            `;
         } else {
-            interpretation = "Bạn có xu hướng yêu hiện đại (Gen Z):\nBạn có xu hướng thoải mái, cởi mở và linh hoạt trong tình yêu.";
-            resultsDiv.classList.add('result-genz');
-            document.body.classList.add('result-genz-bg');
-        }
+            document.querySelector('.quiz-container').classList.add('showing-results');
+            resultsDiv.style.display = "block";
 
-        document.getElementById('interpretation').textContent = interpretation;
+            // Remove any existing result classes
+            resultsDiv.classList.remove('result-genx', 'result-neutral', 'result-genz');
+            document.body.classList.remove('result-genx-bg', 'result-neutral-bg', 'result-genz-bg');
+            
+            // Clear any existing background classes from quiz container
+            document.querySelector('.quiz-container').style.background = 'rgba(255, 255, 255, 0.85)';
+
+            let interpretation = "";
+            if (totalScore >= 46) {
+                interpretation = "Bạn có xu hướng yêu truyền thống (Gen X):\nBạn đề cao sự ổn định, kín đáo, thấu cảm và gắn bó bền lâu.";
+                resultsDiv.classList.add('result-genx');
+                document.body.classList.add('result-genx-bg');
+            } else if (totalScore >= 30) {
+                interpretation = "Bạn có xu hướng yêu giao thoa (Trung lập):\nBạn biết cân bằng giữa sự riêng tư và cởi mở.";
+                resultsDiv.classList.add('result-neutral');
+                document.body.classList.add('result-neutral-bg');
+            } else {
+                interpretation = "Bạn có xu hướng yêu hiện đại (Gen Z):\nBạn có xu hướng thoải mái, cởi mở và linh hoạt trong tình yêu.";
+                resultsDiv.classList.add('result-genz');
+                document.body.classList.add('result-genz-bg');
+            }
+
+            document.getElementById('interpretation').textContent = interpretation;
+        }
     }, 3000);
 }
 

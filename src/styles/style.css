@@ -318,3 +318,29 @@ h1, h2 {
         transition: none !important;
     }
 }
+
+.easter-egg {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-xl);
+    padding: var(--spacing-xl);
+    background: var(--transparent-white);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.terapagos-img {
+    max-width: 80%;
+    height: auto;
+    border-radius: var(--radius-md);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.easter-egg-text {
+    font-size: var(--font-size-lg);
+    color: var(--primary-color);
+    font-weight: bold;
+    text-align: center;
+    animation: fadeIn var(--animation-timing);
+}
